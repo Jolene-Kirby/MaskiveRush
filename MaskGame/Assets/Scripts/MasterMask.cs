@@ -31,7 +31,7 @@ public class MasterMask : MonoBehaviour
         }
     }
 
-    void SetMasks()
+    public void SetMasks()
     {
         MaskList.Clear();
         MaskList.Add(DuplicateMask1);
@@ -52,6 +52,7 @@ public class MasterMask : MonoBehaviour
 
         CreateFeatures();
     }
+
     void CreateFeatures()
     {
         PickedEyes = Eyes[Random.Range(0, Eyes.Length)];

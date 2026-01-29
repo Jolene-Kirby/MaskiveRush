@@ -19,7 +19,6 @@ public class Masks : MonoBehaviour
     void Start()
     {
         MasterMaskScript = GameObject.Find("Master Mask").GetComponent<MasterMask>();
-        
     }
     
     public void RandomizeFeatures()
