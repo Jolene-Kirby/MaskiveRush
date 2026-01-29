@@ -37,6 +37,9 @@ public class GameplayManager : MonoBehaviour
         LevelCount = 1;
         Timer = 10;
         Score = 0;
+
+        LevelText.text = "Level: " + LevelCount;
+        ScoreText.text = "Score: " + Score;
     }
 
     void Update()
