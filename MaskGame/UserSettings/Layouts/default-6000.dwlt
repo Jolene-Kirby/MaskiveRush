@@ -69,8 +69,8 @@ MonoBehaviour:
     y: 0
     width: 533
     height: 933
-  m_MinSize: {x: 276, y: 76}
-  m_MaxSize: {x: 4001, y: 4026}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -262,7 +262,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: GameView
+  m_Name: SceneView
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -273,13 +273,13 @@ MonoBehaviour:
     height: 524
   m_MinSize: {x: 202, y: 226}
   m_MaxSize: {x: 4002, y: 4026}
-  m_ActualView: {fileID: 19}
+  m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
   - {fileID: 19}
   - {fileID: 13}
-  m_Selected: 1
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -650,7 +650,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets/Sprites
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -660,7 +660,7 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/Sprites
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\orson\Desktop\Games\Projects\MaskGame\MaskGame
   m_LockTracker:
@@ -669,13 +669,13 @@ MonoBehaviour:
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs:
-    - m_Data: 47270
+    - m_Data: 47286
     m_LastClickedID:
-      m_Data: 47270
+      m_Data: 47286
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 47168
-    - m_Data: 47170
+    - m_Data: 47178
+    - m_Data: 47180
     - m_Data: 1000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -709,8 +709,8 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 47168
-    - m_Data: 47170
+    - m_Data: 47178
+    - m_Data: 47180
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -738,8 +738,8 @@ MonoBehaviour:
       m_ResourceFile: 
   m_ListAreaState:
     m_SelectedInstanceIDs:
-    - m_Data: 85122
-    m_LastClickedInstanceID: 85122
+    - m_Data: 46522
+    m_LastClickedInstanceID: 46522
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: []
     m_RenameOverlay:
@@ -862,35 +862,15 @@ MonoBehaviour:
     m_DynamicPanelBehavior: 0
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 0}
+      scrollPos: {x: 0, y: 3}
       m_SelectedIDs:
-      - m_Data: 85122
+      - m_Data: 46522
       m_LastClickedID:
-        m_Data: 85122
+        m_Data: 46522
       m_ExpandedIDs:
-      - m_Data: -50182
-      - m_Data: -49902
-      - m_Data: -49268
-      - m_Data: -46408
-      - m_Data: -46128
-      - m_Data: -45428
-      - m_Data: -39916
-      - m_Data: -39636
-      - m_Data: -38936
-      - m_Data: -31824
-      - m_Data: -31544
-      - m_Data: -30844
-      - m_Data: -27066
-      - m_Data: -26786
-      - m_Data: -26152
-      - m_Data: -24128
-      - m_Data: -23848
-      - m_Data: -23214
-      - m_Data: -20822
-      - m_Data: -20440
-      - m_Data: -19740
-      - m_Data: -1294
-      - m_Data: 66756
+      - m_Data: -1338
+      - m_Data: 46420
+      - m_Data: 46778
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -937,10 +917,10 @@ MonoBehaviour:
     m_TextWithWhitespace: "Scene\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 419
-    y: 90
-    width: 1058
-    height: 514
+    x: 469
+    y: 79
+    width: 916
+    height: 498
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -1752,7 +1732,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 1
+    m_EnableMouseInput: 0
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -1763,7 +1743,7 @@ MonoBehaviour:
       y: 21
       width: 916
       height: 477
-    m_Scale: {x: 0.916, y: 0.91599995}
+    m_Scale: {x: 0.91599995, y: 0.91599995}
     m_Translation: {x: 458, y: 238.5}
     m_MarginLeft: 0
     m_MarginRight: 0
@@ -1771,9 +1751,9 @@ MonoBehaviour:
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -500
+      x: -500.00003
       y: -260.3712
-      width: 1000
+      width: 1000.00006
       height: 520.7424
     m_MinimalGUI: 1
   m_defaultScale: 0.916
