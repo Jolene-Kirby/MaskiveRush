@@ -1,17 +1,18 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class MasterMask : MonoBehaviour
 {
-    public string[] Eyes;
-    public string[] Noses;
-    public string[] Mouths;
+    public Sprite[] Eyes;
+    public Sprite[] Noses;
+    public Sprite[] Mouths;
     public Color[] Colours;
 
-    public string PickedEyes;
-    public string PickedNose;
-    public string PickedMouth;
+    public Sprite PickedEyes;
+    public Sprite PickedNose;
+    public Sprite PickedMouth;
     public Color PickedColour;
 
     public GameObject DuplicateMask1;

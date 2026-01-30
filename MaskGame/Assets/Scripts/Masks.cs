@@ -8,14 +8,14 @@ public class Masks : MonoBehaviour
     MasterMask MasterMaskScript;
     GameplayManager GameplayManagerScript;
 
-    string PickedEyes;
-    string PickedNose;
-    string PickedMouth;
+    Sprite PickedEyes;
+    Sprite PickedNose;
+    Sprite PickedMouth;
     Color PickedColour;
 
-    public TextMeshProUGUI EyesText;
-    public TextMeshProUGUI NoseText;
-    public TextMeshProUGUI MouthText;
+    public Image EyesSprite;
+    public Image NoseSprite;
+    public Image MouthSprite;
 
     void OnEnable()
     {
@@ -46,9 +46,9 @@ public class Masks : MonoBehaviour
         }
         else
         {
-            EyesText.text = PickedEyes;
-            NoseText.text = PickedNose;
-            MouthText.text = PickedMouth;
+            EyesSprite.sprite = PickedEyes;
+            NoseSprite.sprite = PickedNose;
+            MouthSprite.sprite = PickedMouth;
             this.GetComponent<Image>().color = PickedColour;
         }
     }

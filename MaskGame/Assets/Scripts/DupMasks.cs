@@ -8,9 +8,9 @@ public class DupMasks : MonoBehaviour
     GameplayManager GameplayManagerScript;
 
 
-    public TextMeshProUGUI EyesText;
-    public TextMeshProUGUI NoseText;
-    public TextMeshProUGUI MouthText;
+    public Image EyesSprite;
+    public Image NoseSprite;
+    public Image MouthSprite;
 
     void OnMouseOver()
     {
@@ -24,9 +24,9 @@ public class DupMasks : MonoBehaviour
     public void SetFeatures()
     {
         MasterMaskScript = GameObject.Find("Master Mask").GetComponent<MasterMask>();
-        EyesText.text = MasterMaskScript.PickedEyes;
-        NoseText.text = MasterMaskScript.PickedNose;
-        MouthText.text = MasterMaskScript.PickedMouth;
+        EyesSprite.sprite = MasterMaskScript.PickedEyes;
+        NoseSprite.sprite = MasterMaskScript.PickedNose;
+        MouthSprite.sprite = MasterMaskScript.PickedMouth;
         this.GetComponent<Image>().color = MasterMaskScript.PickedColour;
     }
 }

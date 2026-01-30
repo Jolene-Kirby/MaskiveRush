@@ -8,6 +8,7 @@ public class GameplayManager : MonoBehaviour
 
     int LevelCount = 1;
     float Timer = 10;
+    float TimerTickRate = 1;
     int Score;
     public TextMeshProUGUI LevelText;
     public TextMeshProUGUI TimerText;
@@ -36,6 +37,7 @@ public class GameplayManager : MonoBehaviour
         
         LevelCount = 1;
         Timer = 10;
+        TimerTickRate = 1;
         Score = 0;
 
         LevelText.text = "Level: " + LevelCount;
@@ -44,7 +46,7 @@ public class GameplayManager : MonoBehaviour
 
     void Update()
     {
-        Timer = Timer - Time.deltaTime;
+        Timer = Timer - (Time.deltaTime * TimerTickRate);
         TimerText.text = "Timer: " + Mathf.RoundToInt(Timer * 100);
 
         if (Timer <= 0)
@@ -111,6 +113,12 @@ public class GameplayManager : MonoBehaviour
                 d_point.SetActive(true);
             }
         }
+
+        if(LevelCount >= 21)
+        {
+            TimerTickRate = -(1 / Mathf.Sqrt(1 + (Mathf.Pow(LevelCount - 20, 2) / 100))) + 2;
+        }
+        Debug.Log(TimerTickRate);
 
         MasterMaskScript.SetMasks();
     }
