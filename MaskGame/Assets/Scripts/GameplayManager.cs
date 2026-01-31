@@ -30,6 +30,7 @@ public class GameplayManager : MonoBehaviour
     public TextMeshProUGUI HighestLevelReachText;
     public TextMeshProUGUI HighscoreText;
 
+    public GameObject StartScreen;
     public GameObject GameSpaceScreen;
     public GameObject GameOverScreen;
     public GameObject TransitionScreen;
@@ -95,14 +96,16 @@ public class GameplayManager : MonoBehaviour
         if (TimerGoing == true)
         {
             Timer -= Time.deltaTime;
-            TimerText.text = "Timer: " + Mathf.RoundToInt(Timer * (1000/TotalTimeOnTimer));
+            TimerText.text = (Mathf.RoundToInt(Timer * (1000/TotalTimeOnTimer))).ToString();
             TimerBar.value = Timer * (1000/TotalTimeOnTimer);
         }
 
         if (Timer <= 0)
         {
+            Timer = 0;
+            TimerText.text = "0";
             CauseOfGameOverString = "ran out of Time.";
-            //GameOver();
+            OutOfTimeStep1();
         }
     }
 
@@ -282,6 +285,63 @@ public class GameplayManager : MonoBehaviour
     }
 
     void IncorrectMaskStep4()
+    {
+        GameSpaceScreen.SetActive(false);
+        CancelInvoke();
+    }
+
+    void OutOfTimeStep1()
+    {
+        GameObject[] MaskArray = GameObject.FindGameObjectsWithTag("Mask");
+        foreach(GameObject mask in MaskArray)
+        {
+            mask.GetComponent<BoxCollider2D>().enabled = false;
+        }
+
+        GameObject[] DuplicateMaskArray = GameObject.FindGameObjectsWithTag("Duplicate Mask");
+        foreach(GameObject duplicateMask in DuplicateMaskArray)
+        {
+            duplicateMask.GetComponent<BoxCollider2D>().enabled = false;
+            duplicateMask.GetComponent<DupMasks>().HighlightLoopStart();
+        }
+
+        Invoke("OutOfTimeStep2", 4.5f);
+    }
+
+    void OutOfTimeStep2()
+    {
+        CauseOfGameOverText.text = "You " + CauseOfGameOverString;
+
+        FinalLevelText.text = "Level: " + LevelCount;
+        FinalLevelText.color = Color.white;
+        if(LevelCount > HighestLevelReach)
+        {
+            FinalLevelText.text += " NEW HIGHEST LEVEL REACH!";
+            FinalLevelText.color = Color.yellow;
+            HighestLevelReach = LevelCount;
+        }
+        HighestLevelReachText.text = "Highest Level Reach: " + HighestLevelReach;
+
+        FinalScoreText.text = "Score: " + Score;
+        FinalScoreText.color = Color.white;
+        if(Score > Highscore)
+        {
+            FinalScoreText.text += " NEW HIGHSCORE!";
+            FinalScoreText.color = Color.yellow;
+            Highscore = Score;
+        }
+        HighscoreText.text = "Highscore: " + Highscore;
+
+        InvokeRepeating("OutOfTimeStep3", 0.5f, 0.01f);
+        Invoke("OutOfTimeStep4", 0.75f);
+    }
+
+    void OutOfTimeStep3()
+    {
+        GameOverScreen.transform.position = Vector3.Lerp(GameOverScreen.transform.position, new Vector3(0, 0, 90), 0.01f);
+    }
+
+    void OutOfTimeStep4()
     {
         GameSpaceScreen.SetActive(false);
         CancelInvoke();

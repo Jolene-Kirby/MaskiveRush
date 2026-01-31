@@ -2249,6 +2249,7 @@ MonoBehaviour:
   FinalScoreText: {fileID: 1806798330}
   HighestLevelReachText: {fileID: 2090691205}
   HighscoreText: {fileID: 1918921872}
+  StartScreen: {fileID: 1801713967}
   GameSpaceScreen: {fileID: 1116974509}
   GameOverScreen: {fileID: 1326198403}
   TransitionScreen: {fileID: 809426301}
@@ -4984,7 +4985,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 4281479730
   m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -5722,9 +5723,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ff89fc516bfddb429314fd3f41f5c3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonManager
+  GameplayManagerScript: {fileID: 401263031}
   StartScreen: {fileID: 0}
   GameSpaceScreen: {fileID: 1116974509}
-  GameOverScreen: {fileID: 1909379247}
+  TransitionScreen: {fileID: 0}
 --- !u!1 &1094727207
 GameObject:
   m_ObjectHideFlags: 0
@@ -5893,7 +5895,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1116974510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7166,7 +7168,7 @@ RectTransform:
   m_Father: {fileID: 585968858}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -8401,7 +8403,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -8982,9 +8984,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ff89fc516bfddb429314fd3f41f5c3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonManager
+  GameplayManagerScript: {fileID: 0}
   StartScreen: {fileID: 1801713967}
   GameSpaceScreen: {fileID: 1116974509}
-  GameOverScreen: {fileID: 0}
+  TransitionScreen: {fileID: 809426301}
 --- !u!1 &1687552760
 GameObject:
   m_ObjectHideFlags: 0
@@ -9404,7 +9407,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1801713968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10433,7 +10436,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3

@@ -61,6 +61,10 @@ public class Masks : MonoBehaviour
         {
             GameplayManagerScript = GameObject.Find("Game Stats").GetComponent<GameplayManager>();
             GameplayManagerScript.IncorrectMaskStep1();
+            
+            ShakeTimer = ShakeDuration;
+            ShakeMaxAngle = ShakeMagnitude;
+            Shaking = true;
 
             IncorrectCrossSprite.transform.position = transform.position;
             IncorrectCrossSprite.SetActive(true);
