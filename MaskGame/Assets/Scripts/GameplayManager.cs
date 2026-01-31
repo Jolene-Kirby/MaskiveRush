@@ -51,6 +51,10 @@ public class GameplayManager : MonoBehaviour
     public int TimerDescreaseStartLevel;
     public int TimerDescreaseEndLevel;
 
+    public AudioSource Slide;
+    public AudioSource Whistle;
+    public AudioSource Music;
+
     void OnEnable()
     {
         MasterMaskScript = GameObject.Find("Master Mask").GetComponent<MasterMask>();
@@ -65,7 +69,7 @@ public class GameplayManager : MonoBehaviour
 
         Score = 0;
 
-        LevelText.text = "Level: " + LevelCount;
+        LevelText.text = "Level " + LevelCount;
         ScoreText.text = "Score: <BR>" + Score;
 
         GameObject[] MaskArray = GameObject.FindGameObjectsWithTag("Mask");
@@ -89,6 +93,8 @@ public class GameplayManager : MonoBehaviour
         }
 
         MasterMaskScript.SetMasks();
+
+        Music.Play(0);
     }
 
     void Update()
@@ -98,14 +104,20 @@ public class GameplayManager : MonoBehaviour
             Timer -= Time.deltaTime;
             TimerText.text = (Mathf.RoundToInt(Timer * (1000/TotalTimeOnTimer))).ToString();
             TimerBar.value = Timer * (1000/TotalTimeOnTimer);
-        }
 
-        if (Timer <= 0)
-        {
-            Timer = 0;
-            TimerText.text = "0";
-            CauseOfGameOverString = "ran out of Time.";
-            OutOfTimeStep1();
+            if (Timer <= 0)
+            {
+                Timer = 0;
+                TimerText.text = "0";
+                TimerGoing = false;
+
+                CauseOfGameOverString = "ran out of Time.";
+
+                Whistle.Play(0);
+                Music.Stop();
+
+                OutOfTimeStep1();
+            }
         }
     }
 
@@ -129,21 +141,27 @@ public class GameplayManager : MonoBehaviour
         TimerGoing = false;
 
         InvokeRepeating("CorrectMaskStep2", 1f, 0.01f);
+        Invoke("CorrectMaskStep3", 1f);
+        Invoke("CorrectMaskStep4", 1.9f);
     }
 
     void CorrectMaskStep2()
     {
         TransitionScreen.transform.position = Vector3.Lerp(TransitionScreen.transform.position, new Vector3(0, 0, 90), 0.1f);
-
-        Invoke("CorrectMaskStep3", 0.9f);
     }
 
     void CorrectMaskStep3()
     {
+        Slide.pitch = Random.Range(0.8f, 1.2f);
+        Slide.Play(0);
+    }
+
+    void CorrectMaskStep4()
+    {
         CancelInvoke();
 
         LevelCount++;
-        LevelText.text = "Level: " + LevelCount;
+        LevelText.text = "Level " + LevelCount;
 
         if (LevelCount == MaskAmountIncreaseLevel2)
         {
@@ -215,16 +233,20 @@ public class GameplayManager : MonoBehaviour
             duplicateMask.GetComponent<BoxCollider2D>().enabled = true;
         }
 
-        InvokeRepeating("CorrectMaskStep4", 0.1f, 0.01f);
-        Invoke("CorrectMaskStep5", 0.5f);
+        InvokeRepeating("CorrectMaskStep5", 0.1f, 0.01f);
+
+        Slide.pitch = Random.Range(0.8f, 1.2f);
+        Slide.Play(0);
+
+        Invoke("CorrectMaskStep6", 0.6f);
     }
 
-    void CorrectMaskStep4()
+    void CorrectMaskStep5()
     {
         TransitionScreen.transform.position = Vector3.Lerp(TransitionScreen.transform.position, new Vector3(0, -116, 90), 0.1f);
     }
 
-    void CorrectMaskStep5()
+    void CorrectMaskStep6()
     {
         CancelInvoke();
     }
@@ -248,7 +270,10 @@ public class GameplayManager : MonoBehaviour
 
         TimerGoing = false;
 
-        Invoke("IncorrectMaskStep2", 4.9f);
+        Whistle.Play(0);
+        Music.Stop();
+
+        Invoke("IncorrectMaskStep2", 3.9f);
     }
 
     void IncorrectMaskStep2()
@@ -276,6 +301,10 @@ public class GameplayManager : MonoBehaviour
         HighscoreText.text = "Highscore: " + Highscore;
 
         InvokeRepeating("IncorrectMaskStep3", 0.1f, 0.01f);
+
+        Slide.pitch = Random.Range(0.8f, 1.2f);
+        Slide.Play(0);
+
         Invoke("IncorrectMaskStep4", 0.75f);
     }
 
@@ -305,7 +334,7 @@ public class GameplayManager : MonoBehaviour
             duplicateMask.GetComponent<DupMasks>().HighlightLoopStart();
         }
 
-        Invoke("OutOfTimeStep2", 4.5f);
+        Invoke("OutOfTimeStep2", 3.5f);
     }
 
     void OutOfTimeStep2()
@@ -333,12 +362,16 @@ public class GameplayManager : MonoBehaviour
         HighscoreText.text = "Highscore: " + Highscore;
 
         InvokeRepeating("OutOfTimeStep3", 0.5f, 0.01f);
-        Invoke("OutOfTimeStep4", 0.75f);
+        
+        Slide.pitch = Random.Range(0.8f, 1.2f);
+        Slide.Play(0);
+
+        Invoke("OutOfTimeStep4", 1.5f);
     }
 
     void OutOfTimeStep3()
     {
-        GameOverScreen.transform.position = Vector3.Lerp(GameOverScreen.transform.position, new Vector3(0, 0, 90), 0.01f);
+        GameOverScreen.transform.position = Vector3.Lerp(GameOverScreen.transform.position, new Vector3(0, 0, 90), 0.1f);
     }
 
     void OutOfTimeStep4()
@@ -350,6 +383,10 @@ public class GameplayManager : MonoBehaviour
     public void RestartStep1()
     {
         InvokeRepeating("RestartStep2", 0f, 0.01f);
+
+        Slide.pitch = Random.Range(0.8f, 1.2f);
+        Slide.Play(0);
+
         Invoke("RestartStep3", 0.5f);
     } 
 

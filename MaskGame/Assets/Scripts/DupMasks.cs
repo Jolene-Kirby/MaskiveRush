@@ -20,6 +20,9 @@ public class DupMasks : MonoBehaviour
     float ShakeTimer;
     bool Shaking;
 
+    public AudioSource Tap;
+    public AudioSource Bell;
+
     void OnEnable()
     {
         Shaking = false;
@@ -64,6 +67,11 @@ public class DupMasks : MonoBehaviour
 
             CorrectCircleSprite.transform.position = transform.position;
             CorrectCircleSprite.SetActive(true);
+
+            Tap.pitch = Random.Range(0.8f, 1.2f);
+            Tap.Play(0);
+
+            Bell.Play(0);
         }
     }
     

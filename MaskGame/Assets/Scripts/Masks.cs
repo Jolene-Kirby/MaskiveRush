@@ -25,6 +25,8 @@ public class Masks : MonoBehaviour
     
     public GameObject IncorrectCrossSprite;
 
+    public AudioSource Tap;
+
     void OnEnable()
     {
         MasterMaskScript = GameObject.Find("Master Mask").GetComponent<MasterMask>();
@@ -68,6 +70,9 @@ public class Masks : MonoBehaviour
 
             IncorrectCrossSprite.transform.position = transform.position;
             IncorrectCrossSprite.SetActive(true);
+
+            Tap.pitch = Random.Range(0.8f, 1.2f);
+            Tap.Play(0);
         }
     }
     
