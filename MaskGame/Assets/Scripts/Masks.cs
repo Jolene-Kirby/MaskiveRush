@@ -17,9 +17,42 @@ public class Masks : MonoBehaviour
     public Image NoseSprite;
     public Image MouthSprite;
 
+    public float ShakeMagnitude;
+    float ShakeMaxAngle;
+    public float ShakeDuration;
+    float ShakeTimer;
+    bool Shaking;
+    
+    public GameObject IncorrectCrossSprite;
+
     void OnEnable()
     {
         MasterMaskScript = GameObject.Find("Master Mask").GetComponent<MasterMask>();
+
+        Shaking = false;
+        ShakeTimer = 0;
+
+        IncorrectCrossSprite.SetActive(false);
+
+        GetComponent<BoxCollider2D>().enabled = true;
+    }
+
+    void Update()
+    {
+        if (ShakeTimer > 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, Random.Range(-ShakeMaxAngle, ShakeMaxAngle));
+
+            ShakeTimer -= Time.deltaTime;
+            ShakeMaxAngle *= (ShakeTimer/ShakeDuration);
+
+        }
+        else if (ShakeTimer <= 0 && Shaking == true)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+            
+            Shaking = false;
+        }
     }
 
     void OnMouseOver()
@@ -28,6 +61,9 @@ public class Masks : MonoBehaviour
         {
             GameplayManagerScript = GameObject.Find("Game Stats").GetComponent<GameplayManager>();
             GameplayManagerScript.IncorrectMaskStep1();
+
+            IncorrectCrossSprite.transform.position = transform.position;
+            IncorrectCrossSprite.SetActive(true);
         }
     }
     

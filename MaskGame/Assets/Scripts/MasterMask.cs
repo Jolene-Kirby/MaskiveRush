@@ -52,13 +52,9 @@ public class MasterMask : MonoBehaviour
     void CreateFeatures()
     {
         PickedEyes = Eyes[Random.Range(0, Eyes.Length)];
-        Debug.Log("Picked Eye = " + PickedEyes);
         PickedNose = Noses[Random.Range(0, Noses.Length)];
-        Debug.Log("Picked Nose = " + PickedNose);
         PickedMouth = Mouths[Random.Range(0, Mouths.Length)];
-        Debug.Log("Picked Mouth = " + PickedMouth);
         PickedColour = Colours[Random.Range(0, Colours.Length)];
-        Debug.Log("PickedColour = " + PickedColour);
 
         GameObject[] DupMaskObjects = GameObject.FindGameObjectsWithTag("Duplicate Mask");
         foreach(GameObject dupMaskObject in DupMaskObjects)

@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class ButtonManager : MonoBehaviour
 {
+    public GameplayManager GameplayManagerScript;
+
     public GameObject StartScreen;
     public GameObject GameSpaceScreen;
     public GameObject GameOverScreen;
@@ -15,6 +17,8 @@ public class ButtonManager : MonoBehaviour
     public void Restart()
     {
         GameSpaceScreen.SetActive(true);
-        GameOverScreen.SetActive(false);
+
+        GameplayManagerScript = GameObject.Find("Game Stats").GetComponent<GameplayManager>();
+        GameplayManagerScript.RestartStep1();
     }
 }

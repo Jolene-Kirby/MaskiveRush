@@ -53,6 +53,8 @@ public class GameplayManager : MonoBehaviour
     void OnEnable()
     {
         MasterMaskScript = GameObject.Find("Master Mask").GetComponent<MasterMask>();
+
+        CancelInvoke();
         
         LevelCount = 1;
 
@@ -100,7 +102,7 @@ public class GameplayManager : MonoBehaviour
         if (Timer <= 0)
         {
             CauseOfGameOverString = "ran out of Time.";
-            GameOver();
+            //GameOver();
         }
     }
 
@@ -130,7 +132,7 @@ public class GameplayManager : MonoBehaviour
     {
         TransitionScreen.transform.position = Vector3.Lerp(TransitionScreen.transform.position, new Vector3(0, 0, 90), 0.1f);
 
-        Invoke("CorrectMaskStep3", 1f);
+        Invoke("CorrectMaskStep3", 0.9f);
     }
 
     void CorrectMaskStep3()
@@ -210,7 +212,7 @@ public class GameplayManager : MonoBehaviour
             duplicateMask.GetComponent<BoxCollider2D>().enabled = true;
         }
 
-        InvokeRepeating("CorrectMaskStep4", 0f, 0.01f);
+        InvokeRepeating("CorrectMaskStep4", 0.1f, 0.01f);
         Invoke("CorrectMaskStep5", 0.5f);
     }
 
@@ -227,11 +229,29 @@ public class GameplayManager : MonoBehaviour
     public void IncorrectMaskStep1()
     {
         CauseOfGameOverString = "got the wrong mask.";
-        GameOver();
+
+        GameObject[] MaskArray = GameObject.FindGameObjectsWithTag("Mask");
+        foreach(GameObject mask in MaskArray)
+        {
+            mask.GetComponent<BoxCollider2D>().enabled = false;
+        }
+
+        GameObject[] DuplicateMaskArray = GameObject.FindGameObjectsWithTag("Duplicate Mask");
+        foreach(GameObject duplicateMask in DuplicateMaskArray)
+        {
+            duplicateMask.GetComponent<BoxCollider2D>().enabled = false;
+            duplicateMask.GetComponent<DupMasks>().HighlightLoopStart();
+        }
+
+        TimerGoing = false;
+
+        Invoke("IncorrectMaskStep2", 4.9f);
     }
 
-    void GameOver()
+    void IncorrectMaskStep2()
     {
+        CauseOfGameOverText.text = "You " + CauseOfGameOverString;
+
         FinalLevelText.text = "Level: " + LevelCount;
         FinalLevelText.color = Color.white;
         if(LevelCount > HighestLevelReach)
@@ -252,9 +272,34 @@ public class GameplayManager : MonoBehaviour
         }
         HighscoreText.text = "Highscore: " + Highscore;
 
-        CauseOfGameOverText.text = "You " + CauseOfGameOverString;
-
-        GameOverScreen.SetActive(true);
-        GameSpaceScreen.SetActive(false);
+        InvokeRepeating("IncorrectMaskStep3", 0.1f, 0.01f);
+        Invoke("IncorrectMaskStep4", 0.75f);
     }
+
+    void IncorrectMaskStep3()
+    {
+        GameOverScreen.transform.position = Vector3.Lerp(GameOverScreen.transform.position, new Vector3(0, 0, 90), 0.1f);
+    }
+
+    void IncorrectMaskStep4()
+    {
+        GameSpaceScreen.SetActive(false);
+        CancelInvoke();
+    }
+
+    public void RestartStep1()
+    {
+        InvokeRepeating("RestartStep2", 0f, 0.01f);
+        Invoke("RestartStep3", 0.5f);
+    } 
+
+    void RestartStep2()
+    {
+        GameOverScreen.transform.position = Vector3.Lerp(GameOverScreen.transform.position, new Vector3(0, -116, 90), 0.1f);
+    } 
+
+    void RestartStep3()
+    {
+        CancelInvoke();
+    } 
 }
